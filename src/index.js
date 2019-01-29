@@ -1,20 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function tick() {
-  console.log('tick', this);
-  const element = (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
-  ReactDOM.render(element, document.getElementById('root'));
+const FunctionalComponent = () => (
+  <div>
+    <h1>함수형 컴포넌트</h1>
+    <h2>현재시간은? {new Date().toLocaleTimeString()}.</h2>
+  </div>
+);
+
+class StatelessComponent extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>상태가 없는 클래스형 컴포넌트</h1>
+        <h2>현재시간은? {new Date().toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
 }
 
-const nTimer = setInterval(tick, 1000);
-const nTimer2 = setTimeout(function() {
-  clearInterval(nTimer);
-}, 5000);
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      now: new Date().toLocaleTimeString(),
+    };
 
-console.log(nTimer, nTimer2);
+    setTimeout(() => {
+      this.setState({
+        now: new Date().toLocaleTimeString(),
+      });
+    }, 5000);
+  }
+  render() {
+    return (
+      <div>
+        <h1>상태가 있는 클래스형 컴포넌트</h1>
+        <h2>현재시간은? {new Date().toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <div>
+    <FunctionalComponent />
+    <StatelessComponent />
+    <StatefulComponent />
+  </div>,
+  document.getElementById('root')
+);
