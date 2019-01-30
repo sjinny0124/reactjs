@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Timer from './components/Timer';
-
 import TodoList from './components/TodoList';
+import Toggle from './components/Toggle';
+import Header from './components/Header';
 
 class App extends Component {
   state = {
@@ -16,35 +17,31 @@ class App extends Component {
       {name: 'React 로 간단한 노트 앱을 만들어 본다.', completed: false},
     ],
     isUnmount: false,
+    isTimerUnmount: false,
   };
 
-  componentDidMount() {
-    setTimeout(() => {
-      const items = this.state.data;
-      const data = items.map(item => {
-        item.completed = true;
-        return item;
-      });
-      this.setState({
-        data: data,
-      });
-    }, 5000);
-
-    setTimeout(() => {
-      this.setState({
-        //isUnmount: true,
-      });
-    }, 10000);
-  }
+  handleExpireTimer = () => {
+    console.log('타이머가 종료되었습니다.');
+    this.setState({
+      isTimerUnmount: true,
+    });
+  };
 
   render() {
     return (
       <div className="App">
+        <Header />
+        <Toggle />
         {!this.state.isUnmount && (
           <TodoList title={'강의목표'} items={this.state.data} />
         )}
 
-        <Timer expireDate={`2019-01-30T18:00:00+09:00`} />
+        {this.state.isTimerUnmount && (
+          <Timer
+            expireDate={`2019-01-30T13:42:00+09:00`}
+            onExpired={this.handleExpireTimer}
+          />
+        )}
       </div>
     );
   }
