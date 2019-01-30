@@ -1,7 +1,7 @@
 import React from 'react';
-import './Todos.css'
+import './TodoList.css'
 
-class Todos extends React.Component {
+class TodoList extends React.Component {
   componentDidMount() {
     console.log('componentDidMount')
   }
@@ -14,11 +14,13 @@ class Todos extends React.Component {
     const { title, items } = this.props;
 
     return (
-      <div className="Todos">
+      <div className="TodoList">
         <h2>{title}</h2>
         <ul>
           {items.map((item, index)=> {
-            return <li key={"s1"+index}><input type="checkbox" checked={item.completed}/>{item.name}</li>;
+            const {name, completed } = item;
+            return (
+              <li key={`todo-item-${index}`}><input type="checkbox" checked={completed}/>{name}</li>);
           })}
         </ul>
       </div>
@@ -26,4 +28,4 @@ class Todos extends React.Component {
   }
 };
 
-export default Todos;
+export default TodoList;
