@@ -5,6 +5,8 @@ import Timer from './components/Timer';
 import TodoList from './components/TodoList';
 import Toggle from './components/Toggle';
 import Header from './components/Header';
+import MarkEditor from './components/MarkEditor';
+import ControlledForm from './components/ControlledForm';
 
 class App extends Component {
   state = {
@@ -30,6 +32,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ControlledForm />
+        <MarkEditor />
         <Header />
         <Toggle />
         {!this.state.isUnmount && (

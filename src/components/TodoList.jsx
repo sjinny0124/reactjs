@@ -1,10 +1,10 @@
 import React from 'react';
 import './TodoList.css';
+import TodoListItem from './TodoListItem';
 
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
-
     //this.handleTitleClick = this.handleTitleClick.bind(this);
   }
 
@@ -28,13 +28,7 @@ class TodoList extends React.Component {
         <h2 onClick={() => this.handleTitleClick()}>{title}</h2>
         <ul>
           {items.map((item, index) => {
-            const {name, completed} = item;
-            return (
-              <li key={`todo-item-${index}`}>
-                <input type="checkbox" checked={completed} />
-                {name}
-              </li>
-            );
+            return <TodoListItem {...item} index={index} />;
           })}
         </ul>
       </div>
