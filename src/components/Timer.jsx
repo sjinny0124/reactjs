@@ -1,5 +1,5 @@
 import React from 'react';
-import './Timer.css';
+import './Timer.less';
 import moment from 'moment';
 import 'moment/locale/ko';
 moment.locale('ko');
@@ -14,7 +14,7 @@ class Timer extends React.Component {
   }
 
   checkExpired = () => {
-    console.log(this);
+    //console.log(this);
     const {mtNow} = this.state;
     const {expireDate} = this.props;
     const mtExpire = moment(expireDate);
@@ -42,16 +42,14 @@ class Timer extends React.Component {
 
   render() {
     const {mtNow} = this.state;
-    const {expireDate, onExpired} = this.props;
+    const {expireDate} = this.props;
     const mtExpire = moment(expireDate);
 
     const isExpired = mtExpire < mtNow;
 
-    console.log(onExpired());
-
     return (
       <div className="Timer">
-        <div>현재시간은 {mtNow.format('A h:mm:ss')}</div>
+        <div className={'current'}>현재시간은 {mtNow.format('A h:mm:ss')}</div>
 
         {isExpired ? (
           <div>종료되었습니다.</div>

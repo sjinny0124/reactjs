@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-//import logo from './logo.svg';
-import './App.css';
+import './App.less';
 import Timer from './components/Timer';
 import TodoList from './components/TodoList';
 import Toggle from './components/Toggle';
 import Header from './components/Header';
 import MarkEditor from './components/MarkEditor';
 import ControlledForm from './components/ControlledForm';
+import Counter from './components/Counter';
 import {Button} from 'antd';
 
 class App extends Component {
@@ -20,33 +20,36 @@ class App extends Component {
       {name: 'React 로 간단한 노트 앱을 만들어 본다.', completed: false},
     ],
     isUnmount: false,
-    isTimerUnmount: false,
+    isTimerUnmount: true,
   };
 
   handleExpireTimer = () => {
     console.log('타이머가 종료되었습니다.');
     this.setState({
-      isTimerUnmount: true,
+      isTimerUnmount: false,
     });
   };
 
   render() {
     return (
       <div className="App">
-        <Button>스타일 버튼</Button>
-        <ControlledForm />
-        <MarkEditor />
-        <Header />
-        <Toggle />
-        {!this.state.isUnmount && (
-          <TodoList title={'강의목표'} items={this.state.data} />
-        )}
+        <Counter />
+        <Button type="primary" shape="circle" icon="search" />
+        <Button type={'primary'}>스타일 버튼</Button>
+        {/*<ControlledForm />*/}
+        {/*<MarkEditor />*/}
+        {/*<Header />*/}
+        {/*<Toggle />*/}
 
         {this.state.isTimerUnmount && (
           <Timer
-            expireDate={`2019-01-30T13:42:00+09:00`}
+            expireDate={`2019-02-01T18:00:00+09:00`}
             onExpired={this.handleExpireTimer}
           />
+        )}
+
+        {!this.state.isUnmount && (
+          <TodoList title={'강의목표'} items={this.state.data} />
         )}
       </div>
     );
