@@ -4,46 +4,29 @@ import './Counter.less';
 
 const Search = Input.Search;
 
-class Counter extends React.Component {
-  /*state = {
-    count: 0,
-  };*/
-
-  //count = 0;
+class Counter extends React.PureComponent {
   constructor(props) {
     super(props);
     this.count = 0;
-    this.state({
+    this.state = {
       open: false,
-    });
+      list: [1, 2, 3, 4, 5],
+    };
   }
 
   handleClick = e => {
-    this.count = this.count + 1;
+    const {list} = this.state;
+    //let num = Math.random() * 1000;
+    //num = Math.ceil(num);
 
-    if (this.count === 10) {
-      this.forceUpdate();
-      this.setState({
-        open: true,
-      });
-    }
-    /*this.setState(prevState => {
-      return {count: prevState.count + 1};
-    });
-    this.setState(prevState => {
-      return {count: prevState.count + 1};
-    });
-    this.setState(prevState => {
-      return {count: prevState.count + 1};
-    });
-    this.setState(prevState => {
-      return {count: prevState.count + 1};
-    });*/
+    //console.log(num);
+    const newList = [...list];
 
-    /* this.setState({count: this.state.count + 1});
-    this.setState({count: this.state.count + 1});
-    this.setState({count: this.state.count + 1});
-    this.setState({count: this.state.count + 1});*/
+    this.setState({
+      list: newList.filter((item, idx, arr) => {
+        return item % 2 === 1;
+      }),
+    });
   };
 
   handleSearch = value => {
@@ -55,7 +38,11 @@ class Counter extends React.Component {
     return (
       <div className="Counter">
         <header className="App-header">
-          {this.count}
+          {this.state.list.map((item, idx) => {
+            return <div key={`lit-item-${idx}`}>{item}</div>;
+          })}
+
+          <Button onClick={this.handleClick}>카운터</Button>
 
           <Search
             className={'Search'}
@@ -70,8 +57,6 @@ class Counter extends React.Component {
             <p>Some contents...</p>
             <p>Some contents...</p>
           </Modal>
-
-          <Button onClick={this.handleClick}>카운터</Button>
         </header>
       </div>
     );
