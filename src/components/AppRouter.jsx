@@ -1,29 +1,19 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import './AppRouter.less';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Navigation from './Navigation';
+import TodoList from './TodoList';
 
 const Index = () => <h2>Home</h2>;
 const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
 
 const AppRouter = () => (
   <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about/">About</Link>
-          </li>
-          <li>
-            <Link to="/users/">Users</Link>
-          </li>
-        </ul>
-      </nav>
-      <Route patH="/" exact component={Index} />
-      <Route patH="/about/" exact component={About} />
-      <Route patH="/users/" exact component={Users} />
+    <div className={'AppRouter'}>
+      <Navigation />
+      <Route path="/" exact component={Index} />
+      <Route path="/about/" exact component={About} />
+      <Route path="/todo-list/" exact component={TodoList} />
     </div>
   </Router>
 );

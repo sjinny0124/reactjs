@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.less';
+//import './App.less';
 import Timer from './components/Timer';
 import TodoList from './components/TodoList';
 import Toggle from './components/Toggle';
@@ -8,6 +8,7 @@ import MarkEditor from './components/MarkEditor';
 import ControlledForm from './components/ControlledForm';
 import Counter from './components/Counter';
 import {Button} from 'antd';
+import AppRouter from './components/AppRouter';
 
 class App extends Component {
   state = {
@@ -33,13 +34,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Counter />
+        <header className="App-header">
+          <AppRouter />
+        </header>
+        {/*<Counter />
         <Button type="primary" shape="circle" icon="search" />
         <Button type={'primary'}>스타일 버튼</Button>
         {/*<ControlledForm />*/}
         {/*<MarkEditor />*/}
         {/*<Header />*/}
-        {/*<Toggle />*/}
+        {/*<Toggle />
 
         {this.state.isTimerUnmount && (
           <Timer
@@ -50,7 +54,7 @@ class App extends Component {
 
         {!this.state.isUnmount && (
           <TodoList title={'강의목표'} items={this.state.data} />
-        )}
+        )}*/}
       </div>
     );
   }
