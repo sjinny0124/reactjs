@@ -7,6 +7,7 @@ import Toggle from './components/Toggle';
 import Header from './components/Header';
 import MarkEditor from './components/MarkEditor';
 import ControlledForm from './components/ControlledForm';
+import {Button} from 'antd';
 
 class App extends Component {
   state = {
@@ -32,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Button>스타일 버튼</Button>
         <ControlledForm />
         <MarkEditor />
         <Header />
