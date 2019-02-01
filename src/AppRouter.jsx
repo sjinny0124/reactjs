@@ -1,8 +1,8 @@
 import React from 'react';
-import './AppRouter.less';
+import 'components/AppRouter.less';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Navigation from './Navigation';
-import TodoList from './TodoList';
+import Navigation from 'components/Navigation';
+import TodoList from 'components/TodoList';
 import styled from 'styled-components';
 
 const Page = styled.div`
